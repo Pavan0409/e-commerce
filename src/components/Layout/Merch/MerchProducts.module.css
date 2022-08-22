@@ -1,0 +1,50 @@
+.merchSection {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 30px;
+  align-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.merchContainer {
+  align-content: center;
+  display: inline-block;
+  margin: 30px;
+}
+
+.merchImage {
+  height: 250px;
+  width: 250px;
+  overflow: hidden;
+  border-image: auto;
+}
+
+.merchImage:hover {
+  transform: scale(1.2);
+}
+
+.merchContainer h3 {
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 15px;
+}
+.merchDetail {
+  display: flex;
+  margin: 8px;
+  align-items: center;
+  justify-content: space-between;
+}
+.merchBtn {
+  cursor: pointer;
+  padding: 8px;
+  color: white;
+  border: none;
+  font-size: 15px;
+  font-weight: bold;
+  border-radius: 4%;
+  background: #56ccf2;
+}
