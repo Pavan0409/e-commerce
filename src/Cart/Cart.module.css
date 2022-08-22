@@ -1,0 +1,85 @@
+.cartBody {
+  /* display:flex; */
+  /* margin: 0px; */
+  width: 35%;
+  position: fixed;
+  top: 50px;
+  height: 95%;
+  right: 0;
+  background-color: rgb(255, 255, 255);
+  border: 1px solid rgb(177, 103.103);
+  min-height: 50vh;
+  text-align: center;
+  max-width: 900px;
+  padding: 20px 30px;
+  align-content: center;
+  justify-content: center;
+}
+
+.cartHeading {
+  font-family: "Metal Mania";
+  font-weight: 700;
+}
+
+hr {
+  height: 5px;
+  background-color: black;
+  margin: 1%;
+  left: 2%;
+}
+
+.headText {
+  display: -webkit-inline-flex;
+  margin-left: 8%;
+  font-size: 25px;
+  font-weight: 600;
+  align-items: center;
+  border-bottom: 1px solid black;
+  margin-right: 1.5em;
+  padding-bottom: 10px;
+  margin-top: 10px;
+  width: 45%;
+  /* padding: 0 20px; */
+  /* display: table; */
+  text-decoration: none;
+}
+
+.cartImages {
+  width: 80px;
+  height: 80px;
+  margin-right: 15px;
+  border-radius: 5px;
+  /* width:80px;
+    border-radius:8%;
+    margin-right:20px; */
+}
+.cartList {
+  list-style: none;
+  display: flex;
+}
+.cartTitle {
+  margin-right: 5px;
+  display: block;
+
+  font-family: "Metal Mania";
+}
+.cartPrice {
+  margin-right: 5px;
+  left: 10px;
+  /* width:20%; */
+}
+
+.styleBtn {
+  position: absolute;
+  /* cursor: pointer; */
+  color: rgb(121, 117, 117);
+  top: 0;
+  right: 0;
+  margin: 20px;
+  background: none;
+  font-size: 16px;
+  font-weight: 700;
+  border: 1px solid rgb(121, 117, 117);
+  border-radius: 7px;
+  padding: 5px;
+}
