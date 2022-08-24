@@ -4,7 +4,7 @@ import Footer from "./components/Layout/Footer/Footer";
 import Store from "./components/Pages/store";
 import Home from "./components/Pages/Home";
 import About from "./components/Pages/About";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import CartList from "./Cart/CartList";
 import CartContext from "./components/StoreContext/CartContext";
 
@@ -28,7 +28,6 @@ function App() {
         <Route exact path="/about" element={<About />} />
         <Route exact path="/homepage" element={<Home />} />
       </Routes>
-      <button className="cart-btn-bottom">see the cart</button>
       <Footer />
     </CartContext>
   );
