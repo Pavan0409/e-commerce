@@ -2,7 +2,7 @@ import React from "react";
 import MusicProducts from "./MusicProducts";
 import classes from "./Music.module.css";
 
-const Music = () => {
+const Music = (props) => {
   return (
     <div className={classes.music}>
       <h2>MUSIC</h2>

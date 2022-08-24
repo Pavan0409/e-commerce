@@ -1,30 +1,36 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
 import Header from "./components/Layout/Header/Header";
 import Footer from "./components/Layout/Footer/Footer";
-import Merch from "./components/Layout/Merch/Merch";
-import Music from "./components/Layout/Music/Music";
-import Cart from './Cart/Cart';
+import Store from "./components/Pages/store";
+import Home from "./components/Pages/Home";
+import About from "./components/Pages/About";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import CartList from "./Cart/CartList";
+import CartContext from "./components/StoreContext/CartContext";
 
 function App() {
   const [cartItems, setCartItems] = useState(false);
 
   const CartItems = () => {
     setCartItems(true);
-  }
+  };
 
   const cartItemsClose = () => {
     setCartItems(false);
-  }
+  };
 
   return (
-    <div>
+    <CartContext>
       <Header showCartItem={CartItems} />
-      {cartItems && <Cart close={cartItemsClose} />}
-      <Music />
-      <Merch />
+      {cartItems && <CartList Close={cartItemsClose} />}
+      <Routes>
+        <Route exact path="/" element={<Store />} />
+        <Route exact path="/about" element={<About />} />
+        <Route exact path="/homepage" element={<Home />} />
+      </Routes>
       <button className="cart-btn-bottom">see the cart</button>
       <Footer />
-    </div>
+    </CartContext>
   );
 }
 

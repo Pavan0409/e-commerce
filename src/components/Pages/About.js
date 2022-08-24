@@ -1,5 +1,5 @@
 import React from 'react'
-import {LoremIpsum} from 'react-lorem-ipsum';
+import BandImage from '../../assets/Band.png';
 
 const About = () => {
   return (
@@ -7,8 +7,9 @@ const About = () => {
     <h1>THE GENERICS</h1>
     <h3>ABOUT</h3>
       <div>
-        <img src="./img/Band Members.png" alt />
-        <p>  "Lorem ipsum carrots enhanced rebates. Excellent sayings of a man of
+        <img src={BandImage} alt="Guiter-Band" />
+        <p>  
+          "Lorem ipsum carrots enhanced rebates. Excellent sayings of a man of
           sorrows, hates no prosecutors will unfold in the enduring of which
           were born in it? Often leads smallest mistake some pain main
           responsibilities are to stand for the right builder of pleasure,
@@ -29,7 +30,7 @@ const About = () => {
           often one of us, however, have any! Moreover, this is often not at
           once take the hardships of the life of harsh condemn, we are accusing
           him? Him whom something large cisterns."
-          </p>
+        </p>
       </div>
     </div>
   )

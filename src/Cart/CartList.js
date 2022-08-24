@@ -1,32 +1,15 @@
-import React from "react";
+import {useContext} from "react";
 import classes from "./Cart.module.css";
 import {Container, Row, Col, Button} from "reactstrap";
+import {Cart} from "../components/StoreContext/CartContext";
+import React from "react";
 
-const cartElements = [
-  {
-    title: "Black and blue Colors",
-    price: 100,
-    imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%201.png",
-    quantity: 2,
-  },
-  {
-    title: "Black and white Colors",
-    price: 50,
-    imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%202.png",
-    quantity: 3,
-  },
-  {
-    title: "Yellow and Black Colors",
-    price: 70,
-    imageUrl: "https://prasadyash2411.github.io/ecom-website/img/Album%203.png",
-    quantity: 1,
-  },
-];
+const CartList = (props) => {
+  const {cart} = useContext(Cart)
 
-const Cart = (props) => {
   return (
     <section className={classes.cartBody}>
-      <Button classeName={classes.styleBtn} onClick={props.close}>
+      <Button classeName={classes.styleBtn} onClick={props.Close}>
         X
       </Button>
       <h2 className={classes.cartHeading}>CART</h2>
@@ -44,7 +27,7 @@ const Cart = (props) => {
           <hr />
         </Col>
       </Row>
-      {cartElements.map((items) => {
+      {cart.map((items) => {
         return (
           <Container style={{ marginTop: "20px" }}>
             <Row>
@@ -66,4 +49,4 @@ const Cart = (props) => {
   );
 };
 
-export default Cart;
+export default CartList;
