@@ -37,7 +37,7 @@ const Header = (props) => {
             cart<span className={classes.cartnumber}>{cart.length}</span>
           </button>
         </ul>
-        <h1>The Generics</h1>
+        <h1>The Generics <h3>Get our latest album</h3></h1>
       </div>
     </div>
   );

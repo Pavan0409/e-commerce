@@ -70,11 +70,11 @@ hr {
 }
 
 .styleBtn {
-  position: absolute;
+  position: fixed;
   /* cursor: pointer; */
   color: rgb(121, 117, 117);
   top: 0;
-  right: 0;
+  right: 0%;
   margin: 20px;
   background: none;
   font-size: 16px;

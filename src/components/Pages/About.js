@@ -1,13 +1,13 @@
 import React from 'react'
 import BandImage from '../../assets/Band.png';
+import classes from './About.module.css';
 
 const About = () => {
   return (
     <div>
-    <h1>THE GENERICS</h1>
     <h3>ABOUT</h3>
       <div>
-        <img src={BandImage} alt="Guiter-Band" />
+        <img className={classes.img} src={BandImage} alt="Guiter-Band" />
         <p>  
           "Lorem ipsum carrots enhanced rebates. Excellent sayings of a man of
           sorrows, hates no prosecutors will unfold in the enduring of which
