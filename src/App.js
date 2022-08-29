@@ -7,6 +7,7 @@ import About from "./components/Pages/About";
 import { Routes, Route } from "react-router-dom";
 import CartList from "./Cart/CartList";
 import CartContext from "./components/StoreContext/CartContext";
+import Contact from "./components/Pages/Contact";
 
 function App() {
   const [cartItems, setCartItems] = useState(false);
@@ -19,6 +20,18 @@ function App() {
     setCartItems(false);
   };
 
+  const addRequestHandler = async(contact) => {
+    const response = await fetch("https://e-commerce-2186a-default-rtdb.asia-southeast1.firebasedatabase.app/contact.json",{
+      method:'POST',
+      body: JSON.stringify(contact),
+      headers:{
+        'content-Type' : 'application/json'
+      }
+    })
+    const data = await response.json();
+    console.log(data)
+  }
+
   return (
     <CartContext>
       <Header showCartItem={CartItems} />
@@ -27,6 +40,7 @@ function App() {
         <Route exact path="/" element={<Store />} />
         <Route exact path="/about" element={<About />} />
         <Route exact path="/homepage" element={<Home />} />
+        <Route exact path='/contact' element={<Contact addRequest={addRequestHandler}/>} />
       </Routes>
       <Footer />
     </CartContext>
