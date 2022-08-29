@@ -8,6 +8,7 @@ import { Routes, Route } from "react-router-dom";
 import CartList from "./Cart/CartList";
 import CartContext from "./components/StoreContext/CartContext";
 import Contact from "./components/Pages/Contact";
+import ProductDetail from './components/ProductDetail/ProductDetail';
 
 function App() {
   const [cartItems, setCartItems] = useState(false);
@@ -41,6 +42,7 @@ function App() {
         <Route exact path="/about" element={<About />} />
         <Route exact path="/homepage" element={<Home />} />
         <Route exact path='/contact' element={<Contact addRequest={addRequestHandler}/>} />
+        <Route path="/product/:id" element={<ProductDetail />} />
       </Routes>
       <Footer />
     </CartContext>

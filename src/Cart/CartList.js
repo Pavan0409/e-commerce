@@ -1,11 +1,21 @@
+import React, { useState } from "react";
 import {useContext} from "react";
 import classes from "./Cart.module.css";
 import {Container, Row, Col, Button} from "reactstrap";
 import {Cart} from "../components/StoreContext/CartContext";
-import React from "react";
+import {NavLink, useParams } from "react-router-dom";
 
 const CartList = (props) => {
   const {cart} = useContext(Cart)
+
+  const [anchorP1, setAnchorP1] = useState(null);
+
+  const handleClose = () => {
+    setAnchorP1(null)
+  }
+
+  const params = useParams();
+  console.log(params.id);
 
   return (
     <section className={classes.cartBody}>
@@ -33,7 +43,9 @@ const CartList = (props) => {
             <Row>
               <Col xs="4">
                 <Col xs="6">
-                  <img className={classes.cartImages} src={items.imageUrl} />
+                 <NavLink to={`/product/${items.id}`} onClick ={ handleClose}>
+                 <img className={classes.cartImages} src={items.imageUrl} />
+                 </NavLink>
                 </Col>
                 <Col xs="6" className={classes.cartTitle}>
                   {items.title}
