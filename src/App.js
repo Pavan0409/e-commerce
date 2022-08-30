@@ -9,6 +9,7 @@ import CartList from "./Cart/CartList";
 import CartContext from "./components/StoreContext/CartContext";
 import Contact from "./components/Pages/Contact";
 import ProductDetail from './components/ProductDetail/ProductDetail';
+import Login from "./components/Pages/Login/Login";
 
 function App() {
   const [cartItems, setCartItems] = useState(false);
@@ -43,6 +44,7 @@ function App() {
         <Route exact path="/homepage" element={<Home />} />
         <Route exact path='/contact' element={<Contact addRequest={addRequestHandler}/>} />
         <Route path="/product/:id" element={<ProductDetail />} />
+        <Route exact path="/login" element={<Login />} />
       </Routes>
       <Footer />
     </CartContext>
