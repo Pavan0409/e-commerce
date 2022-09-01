@@ -1,9 +1,16 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useContext, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import classes from "./Login.module.css";
+import { CartContext } from "../../StoreContext/CartContext";
 
-const Login = () => {
+const Login = (props) => {
+  const { contextValue } = useContext(CartContext);
+  console.log(contextValue);
+
   const loginEmailRef = useRef();
   const loginPassRef = useRef();
+  const navigate = useNavigate();
+  const [t, setT] = useState("");
 
   const [isLogin, setIsLogin] = useState(true);
   const [isLoading, setLoading] = useState(false);
@@ -11,7 +18,7 @@ const Login = () => {
   const switchAuthModeHandler = () => {
     setIsLogin((prevState) => !prevState);
   };
-
+ 
   const submitHandler = (event) => {
     event.preventDefault();
 
@@ -20,12 +27,12 @@ const Login = () => {
 
     setLoading(true);
     let url;
-    if (!isLogin) {
+    if (isLogin) {
       url =
-        "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBEIHQ4abeDetD53qy8eV5WJgBPEYw7kvI";
+        "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCXtCxFgYl2z1ztkX6gxP4bKe5vt4wnPdU";
     } else {
       url =
-        "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBEIHQ4abeDetD53qy8eV5WJgBPEYw7kvI";
+        "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCXtCxFgYl2z1ztkX6gxP4bKe5vt4wnPdU";
     }
     fetch(url, {
       method: "POST",
@@ -41,7 +48,6 @@ const Login = () => {
       .then((response) => {
         setIsLogin(false);
         if (response.ok) {
-          alert("you r loggingin");
           return response.json();
         } else {
           return response.json().then((data) => {
@@ -54,12 +60,22 @@ const Login = () => {
         }
       })
       .then((data) => {
+        alert("Logged In SuccesFully");
         console.log(data);
+        setT(data.idToken);
+        contextValue.login(data.idToken);
+
+        props.checkLogin(true);
+        navigate("/store");
       })
       .catch((err) => {
         alert(err.message);
       });
   };
+
+  useEffect(() => {
+    console.log(contextValue.token);
+  },[]);
 
   return (
     <section className={classes.auth}>
@@ -82,7 +98,7 @@ const Login = () => {
         </div>
         <div className={classes.actions}>
           {!isLoading && (
-            <button type="button">
+            <button>
               {isLogin ? "Login" : "Create Account"}
             </button>
           )}

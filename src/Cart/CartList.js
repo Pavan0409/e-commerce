@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import {useContext} from "react";
+import { useContext } from "react";
 import classes from "./Cart.module.css";
-import {Container, Row, Col, Button} from "reactstrap";
-import {Cart} from "../components/StoreContext/CartContext";
-import {NavLink, useParams } from "react-router-dom";
+import { Container, Row, Col, Button } from "reactstrap";
+import { CartContext } from "../components/StoreContext/CartContext";
+import { NavLink, useParams } from "react-router-dom";
 
 const CartList = (props) => {
-  const {cart} = useContext(Cart)
+  const {cart} = useContext(CartContext)
 
   const [anchorP1, setAnchorP1] = useState(null);
 
@@ -43,7 +43,7 @@ const CartList = (props) => {
             <Row>
               <Col xs="4">
                 <Col xs="6">
-                 <NavLink to={`/product/${items.id}`} onClick ={ handleClose}>
+                 <NavLink to={`/product/${items.id}`} onClick ={ handleClose }>
                  <img className={classes.cartImages} src={items.imageUrl} />
                  </NavLink>
                 </Col>

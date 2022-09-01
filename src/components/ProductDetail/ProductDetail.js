@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 import { Table } from "reactstrap";
-import { Cart } from "../StoreContext/CartContext";
+import { CartContext } from "../StoreContext/CartContext";
 
 const ProductDetail = () => {
-  const { cart } = useContext(Cart);
+  const { cart } = useContext(CartContext);
   return (
     <div className="container mt-2">
       <div>

@@ -5,12 +5,15 @@ import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import CartContextProvider from './components/StoreContext/CartContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <BrowserRouter>
+  <CartContextProvider>
+    <BrowserRouter>
     <App />
   </BrowserRouter>
+  </CartContextProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function

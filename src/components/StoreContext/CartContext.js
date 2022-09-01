@@ -1,9 +1,33 @@
 import React, { useState } from "react";
-import { createContext } from "react";
 
-export const Cart = createContext();
+export const CartContext = React.createContext({
+  token: "",
+  isLoggedIn: false,
+  login: (token) => {},
+  logout: () => {},
+});
 
-const CartContext = (props) => {
+const CartContextProvider = (props) => {
+  const [cart, setCart] = useState([]);
+  const [token, setToken] = useState(null);
+  console.log(token);
+
+  const userIsLoggedIn = !token;
+
+  const loginHandler = (token) => {
+    setToken(token);
+  };
+
+  const logoutHandler = () => {
+    setToken(null);
+  };
+
+  const contextValue = {
+    token: token,
+    isLoggedIn: userIsLoggedIn,
+    login: loginHandler,
+    logout: logoutHandler,
+  };
   const cartElements = [
     {
       title: "Colors",
@@ -14,11 +38,11 @@ const CartContext = (props) => {
     },
   ];
 
-  const [cart, setCart] = useState(cartElements);
-
   return (
-    <Cart.Provider value={{ cart, setCart }}>{props.children}</Cart.Provider>
+    <CartContext.Provider value={{ cart, setCart, contextValue }}>
+      {props.children}
+    </CartContext.Provider>
   );
 };
 
-export default CartContext;
+export default CartContextProvider;
