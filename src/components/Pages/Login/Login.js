@@ -5,7 +5,7 @@ import { CartContext } from "../../StoreContext/CartContext";
 
 const Login = (props) => {
   const { contextValue } = useContext(CartContext);
-  console.log(contextValue);
+  // console.log(contextValue);
 
   const loginEmailRef = useRef();
   const loginPassRef = useRef();
@@ -18,7 +18,7 @@ const Login = (props) => {
   const switchAuthModeHandler = () => {
     setIsLogin((prevState) => !prevState);
   };
- 
+
   const submitHandler = (event) => {
     event.preventDefault();
 
@@ -45,28 +45,26 @@ const Login = (props) => {
         "Content-Type": "application/json",
       },
     })
-      .then((response) => {
+      .then((res) => {
         setIsLogin(false);
-        if (response.ok) {
-          return response.json();
+        if (res.ok) {
+          return res.json();
         } else {
-          return response.json().then((data) => {
+          return res.json().then((data) => {
+            console.log(data, "error-data");
             let errorMessage = "Authentication Failed!";
-            //   if (data && data.error && data.error.message) {
-            //     errorMessage = data.error.messsage;
-            //   }
             throw new Error(errorMessage);
+            setIsLogin(false)
           });
         }
       })
       .then((data) => {
-        alert("Logged In SuccesFully");
-        console.log(data);
+        alert("Signed-Up SuccesFully");
+        console.log(data, "------data");
         setT(data.idToken);
         contextValue.login(data.idToken);
-
-        props.checkLogin(true);
-        navigate("/store");
+        navigate("/");
+        props.CheckLogin(true);
       })
       .catch((err) => {
         alert(err.message);
@@ -75,12 +73,11 @@ const Login = (props) => {
 
   useEffect(() => {
     console.log(contextValue.token);
-  },[]);
+  }, []);
 
   return (
     <section className={classes.auth}>
       <h1>{isLogin ? "Login" : "Sign Up"}</h1>
-      {/* <h1>Login</h1> */}
       <form onSubmit={submitHandler}>
         <div className={classes.control}>
           <label htmlFor="email">Your Email</label>
@@ -98,9 +95,7 @@ const Login = (props) => {
         </div>
         <div className={classes.actions}>
           {!isLoading && (
-            <button>
-              {isLogin ? "Login" : "Create Account"}
-            </button>
+            <button>{isLogin ? "Login" : "Create Account"}</button>
           )}
           {isLoading && <p>Sending request...</p>}
           <button
@@ -108,7 +103,7 @@ const Login = (props) => {
             className={classes.toggle}
             onClick={switchAuthModeHandler}
           >
-            {isLogin ? "Create new account" : "Login with existing account"}
+          {isLogin ? "Create new account" : "Login with existing account"}
           </button>
         </div>
       </form>

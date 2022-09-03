@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import classes from "./Header.module.css";
-// import { Link } from "react-router-dom";
 import { CartContext } from "../../StoreContext/CartContext";
 import "./NavLink.css";
 import { NavLink } from "react-router-dom";
@@ -19,7 +18,16 @@ const Header = (props) => {
         {isLoggedIn && (
             <NavLink
               className={(navData) => (navData.isActive ? "active" : "")}
-              to="/"
+              to="/profile"
+            >
+              <li>Profile</li>
+            </NavLink>
+          )}
+        
+        {isLoggedIn && (
+            <NavLink
+              className={(navData) => (navData.isActive ? "active" : "")}
+              to="/homepage"
             >
               <li>Home</li>
             </NavLink>

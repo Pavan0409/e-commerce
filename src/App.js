@@ -10,6 +10,7 @@ import { CartContext } from "./components/StoreContext/CartContext";
 import Contact from "./components/Pages/Contact";
 import ProductDetail from "./components/ProductDetail/ProductDetail";
 import Login from "./components/Pages/Login/Login";
+import UserProfile from './components/Pages/Profile/UserProfile';
 
 function App() {
   const [cartItems, setCartItems] = useState(false);
@@ -25,12 +26,12 @@ function App() {
 
   const addRequestHandler = async (contact) => {
     const response = await fetch(
-      "https://e-commerce-2186a-default-rtdb.asia-southeast1.firebasedatabase.app/contact.json",
+      "https://react-http-62b90-default-rtdb.asia-southeast1.firebasedatabase.app/contact.json",
       {
         method: "POST",
         body: JSON.stringify(contact),
         headers: {
-          "content-Type": "application/json",
+          "Content-Type": "application/json",
         },
       }
     );
@@ -39,10 +40,11 @@ function App() {
   };
 
   return (
-    <>
+     <>
       <Header showCartItem={CartItems} />
       {cartItems && <CartList Close={cartItemsClose} />}
       <Routes>
+        <Route exact path="/profile" element={<UserProfile />} />
         <Route exact path="/store" element={<Store />} />
         <Route exact path="/about" element={<About />} />
         <Route exact path="/homepage" element={<Home />} />
@@ -58,7 +60,7 @@ function App() {
           element={<Login CheckLogin={setIsLoggedIn} />}
         />
         {!isLoggedIn && (
-          <Route path="*" element={<Navigate to="/login"></Navigate>}></Route>
+          <Route path="/store" element={<Navigate to="/login"></Navigate>}></Route>
         )}
       </Routes>
       <Footer />
