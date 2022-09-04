@@ -8,6 +8,10 @@ const Header = (props) => {
   const { cart, contextValue } = useContext(CartContext);
   const isLoggedIn = contextValue.isLoggedIn;
 
+  const logoutHandler = () =>  {
+    contextValue.logout();
+  }
+
   return (
     <div>
       <div className={classes.headBody}>
@@ -66,7 +70,7 @@ const Header = (props) => {
           )}
           {isLoggedIn && (
             <li>
-              <button>Logout</button>
+              <button onClick={logoutHandler}>Logout</button>
             </li>
           )}
           {isLoggedIn && (
