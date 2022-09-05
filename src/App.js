@@ -60,7 +60,7 @@ function App() {
           element={<Login CheckLogin={setIsLoggedIn} />}
         />
         {!isLoggedIn && (
-          <Route path="/store" element={<Navigate to="/login"></Navigate>}></Route>
+          <Route path="*" element={<Navigate to="/login"></Navigate>}></Route>
         )}
       </Routes>
       <Footer />

@@ -1,4 +1,4 @@
-import React, { useState, useRef, useContext, useEffect } from "react";
+import React, { useState, useRef, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import classes from "./Login.module.css";
 import { CartContext } from "../../StoreContext/CartContext";
@@ -10,7 +10,7 @@ const Login = (props) => {
   const loginEmailRef = useRef();
   const loginPassRef = useRef();
   const navigate = useNavigate();
-  const [t, setT] = useState("");
+  // const [t, setT] = useState("");
 
   const [isLogin, setIsLogin] = useState(true);
   const [isLoading, setLoading] = useState(false);
@@ -51,19 +51,17 @@ const Login = (props) => {
           return res.json();
         } else {
           return res.json().then((data) => {
-            console.log(data, "error-data");
             let errorMessage = "Authentication Failed!";
             throw new Error(errorMessage);
-            setIsLogin(false)
           });
         }
       })
       .then((data) => {
-        alert("Signed-Up SuccesFully");
-        console.log(data, "------data");
-        setT(data.idToken);
+        alert("Login SuccesFull");
+        console.log(data);
+        // setT(data.idToken);
         contextValue.login(data.idToken);
-        navigate("/");
+        navigate("/store");
         props.CheckLogin(true);
       })
       .catch((err) => {
@@ -71,9 +69,9 @@ const Login = (props) => {
       });
   };
 
-  useEffect(() => {
-    console.log(contextValue.token);
-  }, []);
+  // useEffect(() => {
+  //   console.log(contextValue.token);
+  // }, []);
 
   return (
     <section className={classes.auth}>

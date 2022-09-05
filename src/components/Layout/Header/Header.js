@@ -8,9 +8,9 @@ const Header = (props) => {
   const { cart, contextValue } = useContext(CartContext);
   const isLoggedIn = contextValue.isLoggedIn;
 
-  const logoutHandler = () =>  {
+  const logoutHandler = () => {
     contextValue.logout();
-  }
+  };
 
   return (
     <div>
@@ -19,7 +19,7 @@ const Header = (props) => {
           {/* <Link to="/homepage">HOME</Link>
         <Link to="/store"><li>STORE</li></Link>
         <Link to="/about"><li>ABOUT</li></Link> */}
-        {isLoggedIn && (
+          {isLoggedIn && (
             <NavLink
               className={(navData) => (navData.isActive ? "active" : "")}
               to="/profile"
@@ -27,8 +27,8 @@ const Header = (props) => {
               <li>Profile</li>
             </NavLink>
           )}
-        
-        {isLoggedIn && (
+
+          {isLoggedIn && (
             <NavLink
               className={(navData) => (navData.isActive ? "active" : "")}
               to="/homepage"
@@ -69,20 +69,24 @@ const Header = (props) => {
             </NavLink>
           )}
           {isLoggedIn && (
-            <li>
-              <button onClick={logoutHandler}>Logout</button>
-            </li>
+            <NavLink
+              className={(navData) => (navData.isActive ? "active" : "")}
+              to="/login"
+            >
+              <li>
+                <button onClick={logoutHandler}>Logout</button>
+              </li>
+            </NavLink>
           )}
           {isLoggedIn && (
-          <button className={classes.cart} onClick={props.showCartItem}>
-            <li>
-              cart<span className={classes.cartnumber}>{cart.length}</span>
-            </li>
-          </button>)}
+            <button className={classes.cart} onClick={props.showCartItem}>
+              <li>
+                cart<span className={classes.cartnumber}>{cart.length}</span>
+              </li>
+            </button>
+          )}
         </ul>
-        <h1>
-          The Generics
-        </h1>
+        <h1>The Generics</h1>
       </div>
     </div>
   );
