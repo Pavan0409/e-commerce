@@ -52,14 +52,14 @@ const Header = (props) => {
               <li>About</li>
             </NavLink>
           )}
-          {!isLoggedIn && (
+          {/* {!isLoggedIn && (
             <NavLink
               className={(navData) => (navData.isActive ? "active" : "")}
               to="/login"
             >
               <li>About</li>
             </NavLink>
-          )}
+          )} */}
           {isLoggedIn && (
             <NavLink
               className={(navData) => (navData.isActive ? "active" : "")}
@@ -81,7 +81,7 @@ const Header = (props) => {
               className={(navData) => (navData.isActive ? "active" : "")}
               to="/login"
             >
-              <li>
+              <li className={classes.logout}>
                 <button onClick={logoutHandler}>Logout</button>
               </li>
             </NavLink>
