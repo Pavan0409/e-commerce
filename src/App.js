@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import axios from "axios";
 import Header from "./components/Layout/Header/Header";
 import Footer from "./components/Layout/Footer/Footer";
 import Store from "./components/Pages/store";
@@ -15,14 +16,48 @@ import UserProfile from './components/Pages/Profile/UserProfile';
 function App() {
   const [cartItems, setCartItems] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const {  cart, setCart, userId, setUserId } = useContext(CartContext);
+  
+  useEffect(() => {
+    if(localStorage.getItem("userId")){
+      console.log(localStorage.getItem("userId"));
+      setUserId(localStorage.getItem("userId"));
+    }
+  }, [setUserId]);
 
   const CartItems = () => {
-    setCartItems(true);
+    // setCartItems(true);
+    if(localStorage.getItem("userId")){
+      setCartItems(true);
+      axios
+      .get(
+        `https://crudcrud.com/api/d66934dd983f4006b8bc114e21f16bca/cartitem${userId}`
+      )
+      .then((response) => {
+        console.log(`userId: ${userId}`);
+        response.data.map((item) => {
+          console.log(`Response Data before ${item}`);
+          setCart((prevState) =>  [...prevState, item]);
+          console.log(`Response Data after ${item}`);
+        });
+      })
+      .catch((error) => {
+        console.log(`error: ${error}`);
+      });
+    }else{
+      alert("Please login first");
+    }
   };
 
   const cartItemsClose = () => {
     setCartItems(false);
   };
+
+  useEffect(() => {
+    if (localStorage.getItem("TokenId")) {
+      setIsLoggedIn(true);
+    }
+  }, []);
 
   const addRequestHandler = async (contact) => {
     const response = await fetch(

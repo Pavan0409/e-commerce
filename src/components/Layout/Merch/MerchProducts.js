@@ -20,7 +20,20 @@ const merchArr = [
 ];
 
 const MerchProducts = (props) => {
-const {cart, setCart} = useContext(CartContext);
+  const { cart, setCart, userId, setUserId, price, setPrice } =
+    useContext(CartContext);
+
+  const addItemHandler = (product)  => {
+    setCart((prevState) => {
+      return [...prevState, product];
+    });
+    setPrice(price + product.price);
+  }
+
+  const removeItemHandler = (items) => {
+    setCart(cart.filter((c) => c.title !== items.title));
+    setPrice(price - items.price);
+  };
 
   return (
     <section className={classes.merchSection}>
@@ -32,21 +45,31 @@ const {cart, setCart} = useContext(CartContext);
               <img src={items.imageUrl} alt="Merch Pictures" />
             </li>
             <li className={classes.merchDetail}>
-              <span>{items.title}:₹{items.price}</span>
-              {cart.includes(items)?(
-              <button className={classes.merchBtn} onClick={()=> {
-                      setCart(cart.filter((c) => c.id !== items.id));
-                    }}>Remove From Cart</button>
-                  ): <button className={classes.merchBtn} onClick={()=> {
-                    setCart([...cart, items])
-                  }}>ADD TO CART</button>}
+              <span>
+                {items.title}:₹{items.price}
+              </span>
+              {cart.includes(items) ? (
+                <button
+                  className={classes.merchBtn}
+                  onClick={() => removeItemHandler(items)}
+                >
+                  Remove From Cart
+                </button>
+              ) : (
+                <button
+                  className={classes.merchBtn}
+                  onClick={() => addItemHandler(items)}
+                >
+                  ADD TO CART
+                </button>
+              )}
               {/* <button className={classes.merchBtn}>Add To Cart</button> */}
             </li>
           </ul>
         );
       })}
     </section>
-  )
+  );
 };
 
 export default MerchProducts;

@@ -4,13 +4,12 @@ import classes from "./Login.module.css";
 import { CartContext } from "../../StoreContext/CartContext";
 
 const Login = (props) => {
-  const { contextValue } = useContext(CartContext);
+  const { contextValue, cart, setCart, userId, setUserId } = useContext(CartContext);
   // console.log(contextValue);
 
   const loginEmailRef = useRef();
   const loginPassRef = useRef();
   const navigate = useNavigate();
-  // const [t, setT] = useState("");
 
   const [isLogin, setIsLogin] = useState(true);
   const [isLoading, setLoading] = useState(false);
@@ -24,6 +23,12 @@ const Login = (props) => {
 
     const enteredLoginEmail = loginEmailRef.current.value;
     const enteredLoginPass = loginPassRef.current.value;
+    
+    let userSavedId = (Math.random()+1).toString(36).substring(7)
+    console.log(userSavedId)
+    localStorage.setItem('userId',userSavedId)
+    setUserId(userSavedId)
+
 
     setLoading(true);
     let url;
@@ -59,6 +64,7 @@ const Login = (props) => {
       .then((data) => {
         alert("Login SuccesFull");
         console.log(data);
+        localStorage.setItem('TokenId', data.idToken)
         // setT(data.idToken);
         contextValue.login(data.idToken);
         navigate("/store");

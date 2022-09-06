@@ -25,3 +25,8 @@
 ul{
   list-style-type: none;
  }
+
+ ul li{
+  float: left;
+  margin: 5px;
+ }

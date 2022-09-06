@@ -6,7 +6,7 @@ import { CartContext } from "../components/StoreContext/CartContext";
 import { NavLink, useParams } from "react-router-dom";
 
 const CartList = (props) => {
-  const {cart} = useContext(CartContext)
+  const {cart, setCart, userId, setUserId, price} = useContext(CartContext);
 
   const [anchorP1, setAnchorP1] = useState(null);
 
@@ -23,6 +23,7 @@ const CartList = (props) => {
         X
       </Button>
       <h2 className={classes.cartHeading}>CART</h2>
+      <h4>Total Price:${price.toFixed(2)}</h4>
       <Row>
         <Col xs="4">
           <span className={classes.headText}>Item</span>
@@ -44,7 +45,7 @@ const CartList = (props) => {
               <Col xs="4">
                 <Col xs="6">
                  <NavLink to={`/product/${items.id}`} onClick ={ handleClose }>
-                 <img className={classes.cartImages} src={items.imageUrl} />
+                 <img className={classes.cartImages} src={items.imageUrl} alt={items.title} />
                  </NavLink>
                 </Col>
                 <Col xs="6" className={classes.cartTitle}>
